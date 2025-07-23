@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>BA DPD Data</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<nav>
+  <ul id="nav" role="tablist"></ul>
+</nav>
+<div class="controls">
+  <button id="clearFiltersBtn" aria-label="Clear all filters">Clear All Filters</button>
+</div>
+<div class="container" role="main">
+  <div class="error" id="error" role="alert"></div>
+  <div class="loader" id="loader" aria-live="polite" aria-atomic="true">Loading data...</div>
+  <div class="table-wrapper" id="tableWrapper">
+    <table id="dataTable" role="grid" aria-describedby="error">
+      <thead>
+        <tr id="headerRow" class="header-row"></tr>
+        <tr id="filterRow" class="filters-row"></tr>
+      </thead>
+      <tbody id="dataBody"></tbody>
+    </table>
+  </div>
+</div>
+<script src="app.js"></script>
+<script></script>
+</body>
+</html> 

@@ -1,0 +1,230 @@
+
+body {
+margin: 0;
+font-family: Arial, sans-serif;
+background: #f5f7fa;
+color: #2c3e50;
+height: 100vh;
+display: flex;
+flex-direction: column;
+}
+nav {
+background: #34495e;
+color: white;
+padding: 16px 30px;
+font-weight: 700;
+font-size: 1.2rem;
+position: sticky;
+top: 0;
+z-index: 1100;
+user-select: none;
+}
+nav ul {
+display: flex;
+padding: 0;
+margin: 0;
+list-style: none;
+}
+nav li {
+padding: 10px 25px;
+cursor: pointer;
+white-space: nowrap;
+color: white;
+transition: background-color 0.3s;
+}
+nav li.active {
+background: #1abc9c;
+}
+nav li:hover:not(.active) {
+background: #2c3e50;
+}
+.controls {
+max-width: 1200px;
+margin: 12px auto 0 auto;
+padding: 0 20px;
+display: flex;
+justify-content: flex-end;
+}
+.controls button {
+background: #1abc9c;
+border: none;
+color: white;
+padding: 8px 20px;
+border-radius: 25px;
+font-weight: 600;
+cursor: pointer;
+transition: background-color 0.3s;
+}
+.controls button:hover {
+background: #16a085;
+}
+.container {
+max-width: 1200px;
+margin: 15px auto 30px auto;
+padding: 0 15px;
+display: flex;
+flex-direction: column;
+height: calc(100vh - 140px); /* accommodate nav + controls */
+}
+.error {
+background: #e74c3c;
+color: white;
+font-weight: bold;
+border-radius: 6px;
+padding: 12px 18px;
+margin-bottom: 10px;
+display: none;
+}
+.loader {
+font-weight: 700;
+color: #3498db;
+text-align: center;
+margin: 12px 0;
+display: none;
+}
+.table-wrapper {
+flex-grow: 1;
+overflow: auto;
+border-radius: 8px;
+box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+background: white;
+position: relative;
+}
+table {
+border-collapse: separate;
+border-spacing: 0;
+margin: 0;
+min-width: 800px;
+width: max-content;
+}
+thead tr.header-row th {
+position: sticky;
+top: 0;
+background: #e3e9f1;
+color: #213655;
+font-weight: 700;
+padding: 12px 18px;
+border-bottom: 2px solid #b8c8dc;
+border-right: 1px solid #a6c1f7;
+text-align: left;
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+z-index: 20;
+user-select: none;
+}
+thead tr.filters-row th {
+position: sticky;
+top: 40px; /* Adjust to header row height; e.g., 40px */
+background: #f7fafc;
+padding: 6px 10px;
+font-weight: 500;
+font-size: 0.9rem;
+z-index: 10;
+border-top: 1px solid #e0e0e0;
+}
+
+thead th {
+position: sticky;
+top: 0;
+background: #ecf0f1;
+border-bottom: 2px solid #bdc3c7;
+border-right: 1px solid #bdc3c7;
+padding: 12px 18px;
+font-weight: 700;
+min-width: 130px;
+max-width: 300px;
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+z-index: 10;
+}
+thead th:first-child {
+left: 0;
+z-index: 20;
+box-shadow: 2px 0 7px -2px rgba(0,0,0,0.15);
+}
+tbody td {
+border-right: 1px solid #ddd;
+border-bottom: 1px solid #ddd;
+padding: 14px 18px;
+max-width: 300px;
+min-width: 130px;
+background: white;
+overflow: hidden;
+text-overflow: ellipsis;
+white-space: nowrap;
+vertical-align: top;
+cursor: pointer;
+user-select: text;
+}
+tbody td:first-child {
+position: sticky;
+left: 0;
+background: #f9fcfe;
+font-weight: 600;
+border-right: 2px solid #27ae60;
+z-index: 5;
+box-shadow: 2px 0 5px -2px rgba(39,174,96,0.5);
+}
+tbody tr:hover td {
+background: #d4f1d4;
+color: #27ae60;
+font-weight: 600;
+}
+td.editing {
+background: #fff6e5 !important;
+white-space: normal;
+}
+textarea {
+width: 100%;
+height: 90px;
+border: 1.5px solid #27ae60;
+border-radius: 7px;
+padding: 7px 10px;
+resize: vertical;
+font-family: Consolas, monospace;
+font-size: 14px;
+background-color: #f5fff7;
+color: #2c3e50;
+}
+.save-btn {
+background: #27ae60;
+border: none;
+border-radius: 20px;
+padding: 7px 25px;
+margin-left: 10px;
+font-weight: 700;
+font-size: 1rem;
+cursor: pointer;
+color: white;
+box-shadow: 0 3px 7px rgba(39,174,96,0.6);
+transition: background-color 0.3s;
+vertical-align: bottom;
+user-select: none;
+}
+.save-btn:hover:not(:disabled) {
+background: #1e8449;
+}
+.save-btn:disabled {
+background: #9bd9a5;
+cursor: not-allowed;
+box-shadow: none;
+}
+input.filter-input {
+width: 100%;
+box-sizing: border-box;
+border: 1.4px solid #27ae60;
+border-radius: 6px;
+padding: 6px 9px;
+font-size: 1rem;
+font-family: inherit;
+background: #eafaf0;
+outline: none;
+transition: border-color .2s ease, box-shadow .2s ease;
+}
+input.filter-input:focus {
+border-color: #1e8449;
+box-shadow: 0 0 8px #27ae6055;
+background: #dcf3df;
+}
