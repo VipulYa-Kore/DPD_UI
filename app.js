@@ -1,12 +1,13 @@
 const API_BASE = "https://demodpd.kore.ai/";
-const ENDPOINTS = ["sbaccounts","sbpayees","sbscheduledpayments","sbtransactions","sbcustomers","sblimits"];
+const ENDPOINTS = ["sbaccounts","sbpayees","sbscheduledpayments","sbtransactions","sbcustomers","sblimits","solutionaccounts"];
 const CUSTOM_ORDER = {
 sbaccounts:      ["customerId","nameOnAccount","accountName","accountNickname","accountNumber","accountType","status"],
 sbtransactions:  ["customerId","nameOnAccount","transactionId","accountNumber"],
 sblimits:        ["customerId","nameOnAccount","accountNickname","accountName","accountType","accountNumber"],
 sbpayees:        ["CustomerId","nameOnAccount","Name","PayeeID","Nickname","AccountNumber"],
 sbscheduledpayments: ["CustomerId","Type","nameOnAccount","Amount","SourceAccountNumber","TargetAccountNumber"],
-sbcustomers:     ["customerId","userId","name","location","email","phone"]
+sbcustomers:     ["customerId","userId","name","location","email","phone"],
+solutionaccounts: ["id","username","newPassword"]
 };
 
 const nav = document.getElementById('nav');
