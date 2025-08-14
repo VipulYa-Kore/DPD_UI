@@ -49,30 +49,71 @@ const i = ENDPOINTS.indexOf(currentEndpoint);
 if(i>=0) nav.children[i].classList.add('active');
 }
 
+// async function fetchAndRender() {
+// hideError();
+// loaderDiv.style.display = 'block';
+// clearTable();
+// try {
+//     const resp = await fetch(API_BASE + currentEndpoint);
+//     if (!resp.ok) throw new Error(`Failed to fetch '${currentEndpoint}'`);
+//     const res = await resp.json();
+//     dataRows = Array.isArray(res.data) ? res.data : (Array.isArray(res) ? res : []);
+//     if (!dataRows.length) {
+//     dataBody.innerHTML = '<tr><td colspan="100%">No data available.</td></tr>';
+//     loaderDiv.style.display = 'none';
+//     return;
+//     }
+//     orderedFields = getOrderedFields(dataRows[0]);
+//     renderHeadersAndFilters();
+//     renderRows();
+//     filters = {};
+// } catch (e) {
+//     showError(e.message);
+// } finally {
+//     loaderDiv.style.display = 'none';
+// }
+// }
+
 async function fetchAndRender() {
-hideError();
-loaderDiv.style.display = 'block';
-clearTable();
-try {
-    const resp = await fetch(API_BASE + currentEndpoint);
-    if (!resp.ok) throw new Error(`Failed to fetch '${currentEndpoint}'`);
-    const res = await resp.json();
-    dataRows = Array.isArray(res.data) ? res.data : (Array.isArray(res) ? res : []);
-    if (!dataRows.length) {
-    dataBody.innerHTML = '<tr><td colspan="100%">No data available.</td></tr>';
-    loaderDiv.style.display = 'none';
-    return;
+    hideError();
+    loaderDiv.style.display = 'block';
+    clearTable();
+    try {
+        const resp = await fetch(API_BASE + currentEndpoint);
+        if (!resp.ok) throw new Error(`Failed to fetch '${currentEndpoint}'`);
+        const res = await resp.json();
+        dataRows = Array.isArray(res.data) ? res.data : (Array.isArray(res) ? res : []);
+        if (!dataRows.length) {
+            dataBody.innerHTML = '<tr><td colspan="100%">No data available.</td></tr>';
+            loaderDiv.style.display = 'none';
+            return;
+        }
+
+        orderedFields = getOrderedFields(dataRows[0]);
+
+        // === ADDITION: Append any missing keys dynamically ===
+        (function() {
+            const allKeysSet = new Set();
+            dataRows.forEach(r => Object.keys(r).forEach(k => allKeysSet.add(k)));
+            const allKeys = [...allKeysSet];
+            allKeys.forEach(k => {
+                if (!orderedFields.includes(k)) {
+                    orderedFields.push(k);
+                }
+            });
+        })();
+        // === END ADDITION ===
+
+        renderHeadersAndFilters();
+        renderRows();
+        filters = {};
+    } catch (e) {
+        showError(e.message);
+    } finally {
+        loaderDiv.style.display = 'none';
     }
-    orderedFields = getOrderedFields(dataRows[0]);
-    renderHeadersAndFilters();
-    renderRows();
-    filters = {};
-} catch (e) {
-    showError(e.message);
-} finally {
-    loaderDiv.style.display = 'none';
 }
-}
+
 
 function clearTable() {
 headerRow.innerHTML = '';
@@ -92,7 +133,7 @@ fields.forEach(f => {
 });
 return ordered;
 }
-
+    
 function niceValue(val) {
 if(val==null) return '';
 if(typeof val === 'object') {
