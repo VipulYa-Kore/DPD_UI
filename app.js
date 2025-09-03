@@ -1,5 +1,5 @@
 const API_BASE = "https://demodpd.kore.ai/";
-const ENDPOINTS = ["sbaccounts","sbpayees","sbscheduledpayments","sbtransactions","sbcustomers","sblimits","solutionaccounts"];
+const ENDPOINTS = ["sbaccounts","sbpayees","sbscheduledpayments","sbtransactions","sbcustomers","sblimits","solutionaccounts","atmbranches"];
 const CUSTOM_ORDER = {
 sbaccounts:      ["customerId","nameOnAccount","accountName","accountNickname","accountNumber","accountType","status"],
 sbtransactions:  ["customerId","nameOnAccount","transactionId","accountNumber"],
@@ -7,7 +7,8 @@ sblimits:        ["customerId","nameOnAccount","accountNickname","accountName","
 sbpayees:        ["CustomerId","nameOnAccount","Name","PayeeID","Nickname","AccountNumber"],
 sbscheduledpayments: ["CustomerId","Type","nameOnAccount","Amount","SourceAccountNumber","TargetAccountNumber"],
 sbcustomers:     ["customerId","userId","name","location","email","phone"],
-solutionaccounts: ["id","username","newPassword"]
+solutionaccounts: ["id","username","newPassword"],
+atmbranches:      ["name","vicinity","type"]
 };
 
 const nav = document.getElementById('nav');
@@ -350,4 +351,5 @@ errorDiv.textContent = '';
 
 renderNav();
 fetchAndRender();
+
 
